@@ -4,7 +4,8 @@
   "description": "blog challenge",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --exit",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -12,5 +13,19 @@
     "express": "^4.16.3",
     "morgan": "^1.9.0",
     "uuid": "^3.2.1"
-  }
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AaronWFreeman/blog-project.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/AaronWFreeman/blog-project/issues"
+  },
+  "homepage": "https://github.com/AaronWFreeman/blog-project#readme"
 }

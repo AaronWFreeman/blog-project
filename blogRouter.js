@@ -19,7 +19,7 @@ router.post('/', jsonParser, (req, res) => {
     if (!(field in req.body)) {
       const message = `Missing \`${field}\` in request body`
       console.error(message);
-      return res.status(400).send(message); 
+      return res.status(400).send(message);
     }
   }
   const item = BlogPosts.create(req.body.title, req.body.content, req.body.author, req.body.publishDate);
@@ -38,12 +38,12 @@ router.put('/:id', jsonParser, (req, res) => {
     const field = requiredFields[i];
     if (!(field in req.body)) {
       const message = `Missing \`${field}\` in request body`
-      console.errore(message);
+      console.error(message);
       return res.status(400).send(message);
     }
   }
   console.log(`Updating blog post \`${req.params.id}\``);
-  const updatedPost = BlogPosts.update({
+  BlogPosts.update({
     id: req.params.id,
     title: req.body.title,
     content: req.body.content,

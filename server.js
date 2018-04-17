@@ -25,19 +25,20 @@ app.get('/posts', (req, res) => {
       res.json(posts.map(post => post.serialize()));
     })
     .catch(err => res.status(500).json({ error: 'something went terribly wrong' }));
-})
+});
 
 app.get('/posts/:id', (req, res) => {
-  console.log(req) // just to look at it.
-  console.log(req.body) // check it out
-  console.log(req.params) // look at this too
+  console.log(req); // just to look at it.
+  console.log(req.body); // check it out
+  console.log(req.params); // look at this too
   BlogPost
     .findById(req.params.id)
     .then(post => {
-      console.log(post) // just to look at it
-      res.json(post)
+      console.log(post); // just to look at it
+      res.json(post);
     })
     .catch(err => res.status(500).json({ message: 'Internal server error'}));
+});
 
 app.post('/posts', (req, res) => {
 
@@ -63,8 +64,8 @@ app.post('/posts', (req, res) => {
     .catch(err => {
       console.error(err);
       res.status(500).json({ message: 'Internal server error' });
-    })
-})
+    });
+});
 
 app.put('/posts/:id', (req, res) => {
   const fieldsToUpdate = ['title', 'author', 'content'];
@@ -73,7 +74,7 @@ app.put('/posts/:id', (req, res) => {
     if (thing in req.body) {
       updatedDocument[thing] = req.body[thing];
     }
-  })
+  });
 
   BlogPost
     .findByIdAndUpdate(req.params.id, updatedDocument)
@@ -81,18 +82,18 @@ app.put('/posts/:id', (req, res) => {
       res.json(updatedPost);
     })
     .catch(err => res.status(500).json({ message: 'Internal server error'}));
-})
+});
 
 app.delete('/posts/:id', (req, res) => {
   BlogPost
     .findByIdAndRemove(req.params.id)
     .then(post => res.status(204).end())
     .catch(err => res.status(500).json({ message: 'Internal Server Error'}));
-})
+});
 
 app.use('*', function (req, res) {
   res.status(404).json({ message: 'Not Found' });
-})
+});
 
 let server;
 
@@ -125,12 +126,12 @@ function closeServer() {
         return;
       }
       resolve;
-    })
-  })
+    });
+  });
 }
 
 if (require.main === module) {
   runServer(DATABASE_URL).catch(err => console.error(err));
-};
+}
 
 module.exports = {app, runServer, closeServer};
